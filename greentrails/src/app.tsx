@@ -1,13 +1,19 @@
-import './style.css';
+import './styles/style.css';
 import React from 'react';
-import Top from './header';
-import Treefooter from './footer';
+import Homepage from './homepage';
+import Volenterpage from './volenterpage';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <Top />
-            <Treefooter />
+            <Router>
+            <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/volenterpage" element={<Volenterpage />} />
+            </Routes>
+            </Router>
         </div>
     );
 };

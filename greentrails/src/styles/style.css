@@ -21,6 +21,7 @@
 header{
   text-align: center;
   font-size: 2.5em;
+  z-index: 2;
 }
 footer{
   background-color: rgb(112, 94, 74);
@@ -41,6 +42,7 @@ body{
   top: 0%;
   left: 0%;
   width: 300px;
+  z-index: -3;
 }
 #tree2{
   height: 90%;
@@ -48,6 +50,7 @@ body{
   top: 0%;
   left: calc(100% - 300px);
   width: 300px;
+  z-index: -3;
 }
 #road{
   width: 20%;
@@ -56,4 +59,7 @@ body{
   align-self: center;
   margin: auto;
 
+}
+#GreenTrails{
+  z-index: 2;
 }

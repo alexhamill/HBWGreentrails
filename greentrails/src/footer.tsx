@@ -1,4 +1,4 @@
-import './style.css'
+import './styles/style.css'
 import React from 'react';
 import Tree from './tree';
 
@@ -14,4 +14,17 @@ import Tree from './tree';
             </div>
         )
     }
+    export const Regfooter: React.FC = () => {
+        return (
+            <div>
+                <div id='tree1'></div>
+                <div id='tree2'></div>
+                <footer>
+                    <div id='road'></div>
+                </footer>
+                
+            </div>
+        )
+    }
+
     export default TreeFooter;
