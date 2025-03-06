@@ -1,0 +1,13 @@
+#fullroad{
+  width: 20%;
+  background-color: rgb(74, 70, 70);
+  height: 90%;
+  min-height: 90vh;
+  top: 10%;
+  left: 40%;
+  position: sticky;
+  
+  margin: auto;
+  margin-top: 50px;
+  
+}

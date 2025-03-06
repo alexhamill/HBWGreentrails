@@ -4,7 +4,7 @@
     left: -5%;
     width: 110%;
     height: 50px;
-    /* background-color: rgb(94, 136, 94); */
+    background-color: rgb(94, 136, 94);
     color: white;
     display: grid;
     grid-template-columns: 5% repeat(20, 1fr);
