@@ -1,5 +1,5 @@
-import './styles/style.css'
-import './styles/navbar.css'
+import '../styles/style.css'
+import '../styles/navbar.css'
 import React from 'react';
 import Cloud from './cloud';
 

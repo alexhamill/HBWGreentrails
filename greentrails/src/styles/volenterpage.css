@@ -1,13 +1,31 @@
 #fullroad{
-  width: 20%;
-  background-color: rgb(74, 70, 70);
-  height: 90%;
-  min-height: 90vh;
-  top: 10%;
-  left: 40%;
-  position: sticky;
-  
+  width: 20vw;
+  background-color: rgb(46, 35, 24);
+  height: 90vh;
+  min-height: 200vh;
+  top: 40vh;
+  left: 40vw;
+  position: absolute;
+  z-index: -1;
   margin: auto;
   margin-top: 50px;
   
+}
+.box{
+  background-color: rgb(41, 67, 44);
+  border-radius: 10%;
+  top: 10%;
+  width: 26vw;
+  height: 40vh;
+  left: 35%;
+  position: relative;
+  margin-top: 15vh;
+  margin-bottom: 15vh; 
+  text-align: center;
+  padding: 2vw;
+}
+
+#page{
+  width: 100vw;
+  height: 100vh;
 }

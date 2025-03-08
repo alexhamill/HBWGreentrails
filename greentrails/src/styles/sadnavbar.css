@@ -19,13 +19,14 @@
 .link{
     height: 100%;
     width: 100px;
-    
+    transition: all .2s ease-out;
     align-items: center;
     text-align: center;
 }
 link{
     max-width: fit-content;
     margin: auto;
+    transition: all 3s ease-out;
     max-height: fit-content;
 }
 .link:hover{
@@ -35,7 +36,7 @@ link{
 
     
 }
-a{
+.a{
     text-decoration: none;
     color: rgb(0, 0, 0);
     display: flex;
@@ -43,6 +44,9 @@ a{
     align-items: center;
     height: 100%;
     width: 100%;
+}
+a{
+    text-decoration: none;
 }
 #volunteer{
     left: 10%;

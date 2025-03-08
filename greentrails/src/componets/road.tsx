@@ -1,5 +1,5 @@
-import './styles/style.css'
-import './styles/volenterpage.css'
+import '../styles/style.css'
+import '../styles/volenterpage.css'
 import React from 'react';
 
 const Road: React.FC = () => {

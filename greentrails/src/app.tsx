@@ -1,7 +1,7 @@
 import './styles/style.css';
 import React from 'react';
-import Homepage from './homepage';
-import Volenterpage from './volenterpage';
+import Homepage from './homepage/homepage';
+import Volenterpage from './volenteerpage/volenterpage';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 
