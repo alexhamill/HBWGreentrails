@@ -3,6 +3,7 @@ import React from 'react';
 import Homepage from './homepage/homepage';
 import Volenterpage from './volenteerpage/volenterpage';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Adddatapage from './adddata/adddatapage';
 
 
 const App: React.FC = () => {
@@ -12,6 +13,7 @@ const App: React.FC = () => {
             <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/volenterpage" element={<Volenterpage />} />
+            <Route path='/adddata' element={<Adddatapage />} />
             </Routes>
             </Router>
         </div>

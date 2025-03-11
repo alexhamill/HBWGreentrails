@@ -2,21 +2,24 @@ import React, { useState, useEffect } from "react";
 import "../styles/style.css"; 
 import "../styles/volenterpage.css"; 
 import { db } from "../base/firebaseConfig"; 
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
 
 export interface Opportunity {
     id: string;
     name: string;
     description: string;
-    date: string;
+    date: string; 
     link: string;
-    signups: number;
+    signups: string[];
 }
 
 const Volbox: React.FC = () => {
-
+    
     const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
     const [loading, setLoading] = useState(true); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOpportunities = async () => {
@@ -27,44 +30,89 @@ const Volbox: React.FC = () => {
               id: doc.id, 
               ...doc.data(), 
             }));
-            setOpportunities(fetchedData); 
+            const currentDate = new Date();
+            // setOpportunities(fetchedData);
+            setOpportunities(fetchedData.filter(event => new Date(event.date) > currentDate).sort((a, b) => new Date(a.date) - new Date(b.date)));  
           } catch (error) {
             console.error("Error fetching opportunities:", error); 
           }
           setLoading(false); 
         };
         fetchOpportunities();
+
+        
     }, []);
 
         if (loading) {
-            return <p>Loading opportunities...</p>;
+            return 
+            <div className="box">
+            <p>Loading opportunities...</p>
+            </div>;
           }
           
           if (opportunities.length === 0) {
-            return <p>No upcoming volunteer opportunities available.</p>;
+            return(
+            <div className="box">
+             <h1>No upcoming volunteer opportunities available we will be adding more soon.</h1>
+            </div>);
           }
-      
-      
+          
+          function addName(event: React.MouseEvent<HTMLButtonElement>) {
+            let target = event.currentTarget as HTMLButtonElement;
+            const curdoc = doc(db, "opportunities", target.id);
+            const name = document.getElementById(target.id+'i') as HTMLInputElement;
+            console.log(opportunities);
+            if(name === null || name.value === ""){
+              return;
+            }
+            if (name.value === "editcode0"){
+              console.log("edit code entered");
+              navigate('/adddata');
+              return;
+            }
+            console.log(document.getElementById(target.id+'i'));
+            try{
+              updateDoc(curdoc, {
+                signups: arrayUnion(name.value),
+            });
+            document.getElementById(target.id+'d')!.textContent = "So far " + opportunities.find((opportunity) => opportunity.id === target.id)!.signups.join(", ") + ", " + name.value + " will be going";
+            } catch (error) {
+              console.error("Error adding name to opportunity:", error);
+            }
+          };
 
+          
+          
   return (
   <div>
     {opportunities.map((opportunity) => (
       <div className="box" key={opportunity.id}>
         <h1>{opportunity.name}</h1>
+        <p className="date">when: {new Date(opportunity.date).toLocaleDateString()}</p>
         <p>{opportunity.description}</p>
-        <p>{opportunity.date}</p>
-        <p>There have been {opportunity.signups} sign-ups from Green Trails members</p>
+        
+        <h4> please sign up with the host and submit your name to let us know you will be going</h4>
         <a
           href={opportunity.link}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Sign up here with the host
+          Click here to sign up with the host
         </a>
+        <p></p>
+        <div>
+            <label>Sign up here with green trails:</label>
+            <p></p>
+            <input className="nameinput" type="text" placeholder="Enter name here" id={opportunity.id + "i"}/>
+            <button  type="submit" id={opportunity.id} className="button nameinput" onClick={(e) => addName(e)}> 
+              Add Name
+            </button>
+            <p id={opportunity.id + "d"}>So far {opportunity.signups.join(", ")} will be going</p>
+          </div>
       </div>
     ))}
   </div>
     );
-};  
+}; 
 
 export default Volbox;
