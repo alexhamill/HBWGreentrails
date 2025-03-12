@@ -6,13 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
@@ -20,6 +15,7 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "@types/firebase": "^2.4.32",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
