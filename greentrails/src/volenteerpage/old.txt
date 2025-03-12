@@ -8,14 +8,15 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 
-export interface Opportunity {
-  id: string;
-  name: string;
-  description: string;
-  date: string; 
-  link: string;
-  signups: string[];
-}
+const querySnapshot = await getDocs(collection(db, "opportunities"));
+const fetchedData = querySnapshot.docs.map((doc) => ({
+  id: doc.id,
+  name: doc.data().name || "Unnamed Opportunity",
+  description: doc.data().description || "",
+  date: doc.data().date?.toDate() || new Date(),
+  link: doc.data().link || "#",
+  signups: doc.data().signups || [],
+}));
 
 const Volbox: React.FC = () => {
     
@@ -46,10 +47,10 @@ const Volbox: React.FC = () => {
     }, []);
 
         if (loading) {
-            return (
+            return 
             <div className="box">
             <p>Loading opportunities...</p>
-            </div>);
+            </div>;
           }
           
           if (opportunities.length === 0) {
