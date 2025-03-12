@@ -3,7 +3,6 @@ import React from 'react';
 import Top from '../componets/header';
 import Treefooter from '../componets/footer';
 import Navbar from'../componets/sadnavbar';
-import Content from '../componets/content';
 
     const Homepage: React.FC = () => {
         return (

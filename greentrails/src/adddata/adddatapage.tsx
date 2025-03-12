@@ -3,7 +3,6 @@ import React from 'react';
 import Top from '../componets/header';
 import Treefooter from '../componets/footer';
 import Navbar from'../componets/sadnavbar';
-import Content from '../componets/content';
 import { db } from "../base/firebaseConfig";
 import { collection, getDocs, addDoc, updateDoc, doc, setDoc } from "firebase/firestore";
 
