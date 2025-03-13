@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
         return (
             <div id='navbar'>
                 <div id='filler'></div>
-                <div className='link' id='#homepage-link' ><Link className="a" to="/">home</Link></div>
+                <div className='link' id='#homepage-link' ><Link className="a" to="/HBWGreentrails">home</Link></div>
                 <div className='link' id='volunteer'><Link className="a"to="/volenterpage">Volenter!!</Link></div>
             </div> 
         )

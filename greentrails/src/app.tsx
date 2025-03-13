@@ -11,7 +11,9 @@ const App: React.FC = () => {
         <div className="App">
             <Router>
             <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/hbwgreentrails/*" element={<Homepage />} />
+            <Route path="/HBWGreentrails/*" element={<Homepage />} />
+            {/* <Route path="/" element={<Homepage />} /> */}
             <Route path="/volenterpage" element={<Volenterpage />} />
             <Route path='/adddata' element={<Adddatapage />} />
             </Routes>
