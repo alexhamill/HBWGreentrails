@@ -1,24 +1,24 @@
 #navbar{
     position: fixed;
-    top: 0;
-    left: -5%;
-    width: 110%;
+    top: 0; 
+    left: -1%;
+    width: 100%;
     height: 50px;
     background-color: rgb(94, 136, 94);
     color: white;
-    display: grid;
-    grid-template-columns: 5% repeat(20, 1fr);
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
     padding: 0 20px;
     z-index: 1;
     overflow: hidden;
     box-shadow: 0 4px 8px -2px #222;
+    display: flex;
+    justify-content: flex-start;
 }
 .link{
     height: 100%;
-    width: 100px;
+    width: fix-content;
+    padding: 0 20px;
     transition: all .2s ease-out;
     align-items: center;
     text-align: center;
@@ -31,10 +31,7 @@ link{
 }
 .link:hover{
     background-color: #e7cf36;
-    
     cursor: pointer;
-
-    
 }
 .a{
     text-decoration: none;
@@ -49,11 +46,9 @@ a{
     text-decoration: none;
 }
 #volunteer{
-    left: 10%;
-    position: relative;
+    
 }   
 #homepagelink{
-    left: 15%;
-    position: relative;
-    width: 10000;
+    
+    
 }

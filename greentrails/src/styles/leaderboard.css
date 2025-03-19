@@ -1,0 +1,7 @@
+.lbentrie {
+    background-color: rgb(94, 136, 94);
+}
+
+.lbentrie:nth-child(odd) {
+    background-color: rgb(120, 160, 120); /* Example color for odd children */
+}
