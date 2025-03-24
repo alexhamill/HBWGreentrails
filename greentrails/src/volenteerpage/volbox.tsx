@@ -22,6 +22,7 @@ const Volbox: React.FC = () => {
     const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
     const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
+    const [Users, setUsers] = React.useState<any[]>([]);
 
     useEffect(() => {
         const fetchOpportunities = async () => {
@@ -32,6 +33,14 @@ const Volbox: React.FC = () => {
               id: doc.id, 
               ...doc.data(), 
             }));
+            
+            const UserQ = await getDocs(collection(db, "Users")); 
+            const UserF = UserQ.docs.map((doc) => ({
+              id: doc.id, 
+              ...doc.data(), 
+            }));
+            console.log(UserF);
+            setUsers(UserF);
             const currentDate = new Date();
             // setOpportunities(fetchedData);
             setOpportunities(fetchedData.filter(event => new Date(event.date) > currentDate).sort((a, b) => new Date(a.date) - new Date(b.date)));  
@@ -67,9 +76,16 @@ const Volbox: React.FC = () => {
             if(name === null || name.value === ""){
               return;
             }
+            
             if (name.value === "editcode0"){
               console.log("edit code entered");
               navigate('/adddata');
+              return;
+            }
+            if (!Users.some(user => user.Name === name.value)){
+              console.log("User not found in the list");
+              name.placeholder = "Please use signup";
+              name.value = "";
               return;
             }
             console.log(document.getElementById(target.id+'i'));
@@ -105,7 +121,14 @@ const Volbox: React.FC = () => {
         <div>
             <label>Sign up here with green trails:</label>
             <p></p>
-            <input className="nameinput" type="text" placeholder="Enter name here" id={opportunity.id + "i"}/>
+            {/* <input className="nameinput" type="text" placeholder="Enter name here" id={opportunity.id + "i"}/> */}
+            <input className="nameinput" list="dropdown" id={opportunity.id + "i"} name="options" />
+              <datalist id="dropdown">
+                {Users.map((user) => (
+                  <option key={user.id} value={user.Name}>{user.Name}</option>
+                ))}
+                
+              </datalist>
             <button  type="submit" id={opportunity.id} className="button nameinput" onClick={(e) => addName(e)}> 
               Add Name
             </button>

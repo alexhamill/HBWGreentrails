@@ -5,3 +5,15 @@
 .lbentrie:nth-child(odd) {
     background-color: rgb(120, 160, 120); /* Example color for odd children */
 }
+.username{
+    margin: 0px;
+}
+.boardcon{
+
+    border-radius: 15%;
+    border: 2px solid rgb(41, 67, 44);
+    overflow-y: scroll;
+    max-width: 30vw;
+    min-width: fit-content;
+    height: 50vh;
+}

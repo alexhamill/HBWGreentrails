@@ -6,21 +6,31 @@ import { collection, getDocs, updateDoc, doc, arrayUnion } from "firebase/firest
 import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { Button, Container } from 'react-bootstrap';
+
 
     
     const Table: React.FC = () => {
         const [leaderboardData, setLeaderboardData] = React.useState<any[]>([]);
+        const [opportunities, setOpportunities] = React.useState<any[]>([]);
 
         useEffect (() => {
             const fetchLeaderboard = async () => {
                 try {
-                    const querySnapshot = await getDocs(collection(db, "leaderboard"));
+                    const querySnapshot = await getDocs(collection(db, "Users"));
                     const fetchedData = querySnapshot.docs.map((doc) => ({
                         id: doc.id,
                         ...doc.data(),
                     }));
                     setLeaderboardData(fetchedData);
                     console.log(fetchedData);
+
+                    const qs = await getDocs(collection(db, "opportunities")); 
+                    const fd = qs.docs.map((doc) => ({
+                        id: doc.id, 
+                        ...doc.data(), 
+                    }));
+                    setOpportunities(fd);
                 } catch (error) {
                     console.error("Error fetching leaderboard:", error);
                 }
@@ -29,15 +39,37 @@ import { getFirestore } from "firebase/firestore";
 
         }, []);
 
+        function upl(event: React.MouseEvent<HTMLButtonElement>) {
+            let cur = 0;
+            leaderboardData.forEach(user => {
+                console.log(opportunities);
+                opportunities.forEach(opertunity => {
+                    console.log(opertunity);
+                    if (opertunity.signups.includes(user.id)) {
+                        cur += 1;
+                        console.log(cur);
+                    }
+                    updateDoc(doc(db, "Users", user.id), {
+                        score: cur,
+                    });
+                });
+                cur=0;
+
+            });
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
         return (
-        <div>
+        <div className='boardcon'>   
 
                 {leaderboardData.map((user) => (
                     <div className='lbentrie' key={user.id}>
-                    <p className='username' > {user.name} </p>
-                    <p className='userscore' > {user.score} </p>
+                    <p className='username' > {user.Name} {user.score}</p>
                     </div>
                 ))}
+                <button onClick={(e) => upl(e)} id="">Update leaderboard</button>
         </div>
         )
     }
