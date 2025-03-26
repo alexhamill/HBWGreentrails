@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
                 <div className='link' id='homepage' ><Link className="a" to="/HBWGreentrails/">home</Link></div>
                 <div className='link' id='volunteer'><Link className="a"to="/volenterpage/">Volenter!!</Link></div>
                 <div className='link' id='leaderboard'><Link className="a"to="/leaderboard/">Leaderboard</Link></div>
+                <div className='link' id='Signup'><Link className="a"to="/signup/">Signup</Link></div>
             </div> 
         )
     }

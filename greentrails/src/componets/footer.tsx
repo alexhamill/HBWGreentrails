@@ -17,8 +17,6 @@ import Tree from './tree';
     export const Regfooter: React.FC = () => {
         return (
             <div>
-                <div id='tree1'></div>
-                <div id='tree2'></div>
                 <footer>
                     {/* <div id='road'></div> */}
                 </footer>

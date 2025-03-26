@@ -1,4 +1,4 @@
-#fullroad{
+.fullroad{
   width: 20vw;
   background-color: rgb(46, 35, 24);
   height: 1000vh;
@@ -12,6 +12,12 @@
   overflow: hidden;
   
 }
+.trunk{
+  height: 200px;
+  width: 20vw;
+  background-color: rgb(46, 35, 24);
+  margin: auto;
+}
 .box{
   background-color: rgb(41, 67, 44);
   border-radius: 10%;
@@ -20,10 +26,11 @@
   height: fit-content;
   left: calc(50% - 40vw/2);
   position: relative;
-  margin-top: 15vh;
-  margin-bottom: 15vh; 
+  /* margin-top: 15vh; */
+  /* margin-bottom: 15vh;  */
   text-align: center;
   padding: 2vw;
+  
 }
 
 #page{

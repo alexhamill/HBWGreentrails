@@ -11,7 +11,13 @@ import { Button, Container } from 'react-bootstrap';
 
     
     const Table: React.FC = () => {
-        const [leaderboardData, setLeaderboardData] = React.useState<any[]>([]);
+        interface User {
+            id: string;
+            score: number;
+            Name: string;
+        }
+
+        const [leaderboardData, setLeaderboardData] = React.useState<User[]>([]);
         const [opportunities, setOpportunities] = React.useState<any[]>([]);
 
         useEffect (() => {
@@ -20,9 +26,10 @@ import { Button, Container } from 'react-bootstrap';
                     const querySnapshot = await getDocs(collection(db, "Users"));
                     const fetchedData = querySnapshot.docs.map((doc) => ({
                         id: doc.id,
-                        ...doc.data(),
-                    }));
-                    setLeaderboardData(fetchedData);
+                        score: doc.data().score,
+                        Name: doc.data().Name,
+                    })) as User[];
+                    setLeaderboardData(fetchedData.sort((a, b) => b.score - a.score));
                     console.log(fetchedData);
 
                     const qs = await getDocs(collection(db, "opportunities")); 
@@ -56,20 +63,22 @@ import { Button, Container } from 'react-bootstrap';
                 cur=0;
 
             });
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 1000);
         }
 
         return (
-        <div className='boardcon'>   
-
+        <div id='events-table'>
+                <h3 id='events-title'>Events Attended</h3>
+                <div id='events-leaderboard' className='boardcon'> 
                 {leaderboardData.map((user) => (
                     <div className='lbentrie' key={user.id}>
                     <p className='username' > {user.Name} {user.score}</p>
                     </div>
                 ))}
                 <button onClick={(e) => upl(e)} id="">Update leaderboard</button>
+                </div>
         </div>
         )
     }

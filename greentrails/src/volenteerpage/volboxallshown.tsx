@@ -44,7 +44,7 @@ const Volbox: React.FC = () => {
             setUsers(UserF);
             const currentDate = new Date();
             // setOpportunities(fetchedData);
-            setOpportunities(fetchedData.filter(event => new Date(event.date) > currentDate).sort((a, b) => new Date(a.date) - new Date(b.date))); 
+            setOpportunities(fetchedData.sort((a, b) => new Date(a.date) - new Date(b.date))); 
           } catch (error) {
             console.error("Error fetching opportunities:", error); 
           }
@@ -86,13 +86,15 @@ const Volbox: React.FC = () => {
             const opportunity = opportunities.find((opportunity) => opportunity.id === target.id);
             if(opportunity && new Date(opportunity.date) < new Date()){
               console.log("Event has already passed");
+              name.value = "";
+              name.placeholder = "Event has already passed";
               return;
             }
 
             if (!Users.some(user => user.Name === name.value)){
               console.log("User not found in the list");
-              name.placeholder = "Please use signup";
               name.value = "";
+              name.placeholder = "Please use signup";
               return;
             }
             console.log(document.getElementById(target.id+'i'));
