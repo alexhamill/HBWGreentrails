@@ -30,7 +30,6 @@ import { Button, Container } from 'react-bootstrap';
                         Name: doc.data().Name,
                     })) as User[];
                     setLeaderboardData(fetchedData.sort((a, b) => b.score - a.score));
-                    console.log(fetchedData);
 
                     const qs = await getDocs(collection(db, "opportunities")); 
                     const fd = qs.docs.map((doc) => ({
@@ -49,12 +48,9 @@ import { Button, Container } from 'react-bootstrap';
         function upl(event: React.MouseEvent<HTMLButtonElement>) {
             let cur = 0;
             leaderboardData.forEach(user => {
-                console.log(opportunities);
                 opportunities.forEach(opertunity => {
-                    console.log(opertunity);
                     if (opertunity.signups.includes(user.id)) {
                         cur += 1;
-                        console.log(cur);
                     }
                     updateDoc(doc(db, "Users", user.id), {
                         score: cur,
@@ -66,15 +62,19 @@ import { Button, Container } from 'react-bootstrap';
             // setTimeout(() => {
             //     window.location.reload();
             // }, 1000);
+            console.log('Done updating leaderboard');
         }
 
         return (
         <div id='events-table'>
                 <h3 id='events-title'>Events Attended</h3>
                 <div id='events-leaderboard' className='boardcon'> 
-                {leaderboardData.map((user) => (
+                {leaderboardData.map((user, index) => (
                     <div className='lbentrie' key={user.id}>
-                    <p className='username' > {user.Name} {user.score}</p>
+                    <p className='place'>{index+1}.</p>
+                    <p className='username'>{user.Name}</p>
+                    <p className='userscore'>{user.score}</p>
+                    <p className='username' >  </p>
                     </div>
                 ))}
                 <button onClick={(e) => upl(e)} id="">Update leaderboard</button>

@@ -2,6 +2,9 @@
     background-color: rgb(94, 136, 94);
     box-shadow: 0px 0px 5px 0px rgb(41, 67, 44);
     margin-bottom: 10px;
+    grid-template-areas: "place username score";
+    grid-template-columns: 33% 33% 33%;
+    display: grid;
 }
 
 .lbentrie:nth-child(odd) {
@@ -31,4 +34,19 @@
 }
 #events-leaderboard{
     grid-area: leaderboard;
+}
+.place{
+    grid-area: place;
+    margin: 0px;
+    text-align: left;
+}
+.username{
+    grid-area: username;
+    margin: 0px;
+    
+}
+.userscore{
+    grid-area: score;
+    margin: 0px;
+    
 }

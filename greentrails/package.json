@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.3",
     "firebase": "^11.4.0",
     "firestore": "^1.1.6",
+    "modules": "^0.4.0",
     "packages": "^0.0.8",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
